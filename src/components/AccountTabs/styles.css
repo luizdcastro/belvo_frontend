@@ -1,0 +1,87 @@
+.tabs_header{
+    display: flex;
+    justify-content: left;
+    margin-top: 30px;
+    border-bottom: solid 1px rgb(228, 228, 228);
+}
+
+.tabs_title{
+    font-size: 0.8rem;
+    margin-right: 30px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.tabs_title_active{
+    font-size: 0.8rem;
+    margin-right: 30px;
+    padding-bottom: 5px;
+    color: #7758e9;
+    cursor: pointer;
+    border-bottom: solid 1.5px #7758e9;
+    font-weight: 500;
+
+}
+
+.tabs_table{
+    margin-top: 20px;
+    flex: 2;
+    display: flex;
+}
+
+.tabs_table_header_date{
+    text-align: left;
+    text-transform: uppercase;  
+    font-weight: 500; 
+    font-size: 0.8rem;
+    padding-bottom: 10px;
+    width: 120px;
+}
+
+.tabs_table_header_amount{
+    text-align: left;
+    text-transform: uppercase;  
+    font-weight: 500; 
+    font-size: 0.8rem;
+    padding-bottom: 10px;
+    width: 120px;
+}
+
+.tabs_table_header_description{
+    text-align: left;
+    text-transform: uppercase;  
+    font-weight: 500; 
+    font-size: 0.8rem;
+    padding-bottom: 10px;
+    width: 350px;
+}
+
+.tabs_table_header_category{
+    text-align: left;
+    text-transform: uppercase;  
+    font-weight: 500; 
+    font-size: 0.8rem;
+    padding-bottom: 10px;
+    width: 200px;
+}
+
+.tabs_table_date{
+    width: 120px;
+    font-size: 0.8rem;
+}
+
+.tabs_table_category{
+    width: 200px;
+    font-size: 0.8rem;
+}
+
+.tabs_table_description{
+    width: 350px;
+    font-size: 0.8rem;
+}
+
+.tabs_table_amount{
+    width: 120px;
+    font-size: 0.8rem;
+}

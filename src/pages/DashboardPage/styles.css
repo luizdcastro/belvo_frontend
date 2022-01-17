@@ -1,0 +1,33 @@
+.update_button{
+    width: 100px;
+    height: 35px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #8f71ff;
+    border: none;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+.reset_button{
+    width: 100px;
+    height: 35px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #ff5d9e;
+    border: none;
+    border-radius: 3px;
+    margin-right: 10px;   
+    
+}
+
+.update_button:hover{
+    cursor: pointer;
+    background-color: #7758e9;
+}
+
+.reset_button:hover{
+    cursor: pointer;
+    background-color: #e94989;
+}
