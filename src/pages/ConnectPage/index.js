@@ -12,7 +12,7 @@ const ConnectPage = () => {
         <div>
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>Auth – Belvo API</title>
+                <title>Connect – Belvo API</title>
             </Helmet>
             <div>
                 <Header />

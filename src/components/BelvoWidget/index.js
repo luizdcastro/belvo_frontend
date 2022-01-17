@@ -56,7 +56,7 @@ const BelvoWidget = ({
 
     async function createWidget() {
         function getAccessToken() {
-            return fetch(`http://localhost:8000/v1/belvo/token/${environment}`, {
+            return fetch(`https://belvo-task-api.herokuapp.com/v1/belvo/token/${environment}`, {
                 method: 'GET'
             })
                 .then(response => response.json())
