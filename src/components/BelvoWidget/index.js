@@ -61,14 +61,14 @@ const BelvoWidget = ({
         function getAccessToken() {
 
             if (!update) {
-                return fetch(`http://localhost:8000/v1/belvo/token/${environment}`, {
+                return fetch(`https://belvo-task-api.herokuapp.com/v1/belvo/token/${environment}`, {
                     method: 'GET'
                 })
                     .then(response => response.json())
                     .then((data) => data)
                     .catch(error => console.error('Error:', error))
             } else {
-                return fetch(`http://localhost:8000/v1/belvo/update-link/${environment}/${updateLink}`, {
+                return fetch(`https://belvo-task-api.herokuapp.com/v1/belvo/update-link/${environment}/${updateLink}`, {
                     method: 'GET'
                 })
                     .then(response => response.json())
