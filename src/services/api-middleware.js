@@ -6,7 +6,7 @@ import { logoutUser } from "../redux/actions/userActions"
 export const apiMiddleware = ({ dispatch, getState }) => (next) => (action) => {
     if (action.type !== constants.API) return next(action);
 
-    const BASE_URL = "https://belvo-task-api.herokuapp.com/v1"
+    const BASE_URL = "http://localhost:8000/v1"
     
     const {
         url,

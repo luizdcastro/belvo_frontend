@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from "react-router-dom"
 import { createUser } from '../../redux/actions/userActions'
 import { getOwners, getAccounts, getBalances, getTransactions } from '../../redux/actions/belvoActions'
@@ -14,10 +14,12 @@ const BelvoWidget = ({
     dispatchGetBalances,
 }) => {
     const history = useHistory()
+    const [update, setUpdate] = useState(false)
+    const [updateLink, setUpdateLink] = useState("")
 
     const getBelvoFullData = (link_id, institution) => {
 
-        dispatchGetAccounts(link_id, environment, () => console.log("getting accounts..."), (error) => console.log(error))
+        dispatchGetAccounts(link_id, environment, () => console.log("getting accounts..."), (error) => console.log(error)) // { setUpdateLink(link_id); setUpdate(true);
         dispatchGetBalances(link_id, environment, () => console.log("getting balances..."), (error) => console.log(error))
         dispatchGetTransactions(link_id, environment, () => console.log("getting transactions..."), (error) => console.log(error))
 
@@ -50,19 +52,31 @@ const BelvoWidget = ({
                 node.onload = createWidget
                 document.body.appendChild(node)
             },
-            [src]
+            [src, update]
         )
     }
 
     async function createWidget() {
+
         function getAccessToken() {
-            return fetch(`https://belvo-task-api.herokuapp.com/v1/belvo/token/${environment}`, {
-                method: 'GET'
-            })
-                .then(response => response.json())
-                .then((data) => data)
-                .catch(error => console.error('Error:', error))
+
+            if (!update) {
+                return fetch(`http://localhost:8000/v1/belvo/token/${environment}`, {
+                    method: 'GET'
+                })
+                    .then(response => response.json())
+                    .then((data) => data)
+                    .catch(error => console.error('Error:', error))
+            } else {
+                return fetch(`http://localhost:8000/v1/belvo/update-link/${environment}/${updateLink}`, {
+                    method: 'GET'
+                })
+                    .then(response => response.json())
+                    .then((data) => data)
+                    .catch(error => console.error('Error:', error))
+            }
         }
+
 
         const successCallbackFunction = (link, institution) => {
             getBelvoFullData(link, institution)
@@ -74,7 +88,7 @@ const BelvoWidget = ({
 
         const onEventCallbackFunction = (data) => {
             if (data.eventName === "PAGE_LOAD" && data.meta_data?.from === "/token") {
-                alert("The Connect Widget update flow is not implemented yet. Please try with an bank that don't require MFA token.")
+                alert("The widget update flow is not fully implemented yet. Please try with an bank that don't require MFA token.")
                 history.push("/")
             }
         }
@@ -110,7 +124,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatchGetBalances: (link_id, environment, onSuccess, onError) =>
         dispatch(getBalances({ link_id, environment }, onSuccess, onError)),
     dispatchGetTransactions: (link_id, environment, onSuccess, onError) =>
-        dispatch(getTransactions({ link_id, environment }, onSuccess, onError)),
+        dispatch(getTransactions({ link_id, environment }, onSuccess, onError))
 })
 
 export default connect(null, mapDispatchToProps)(BelvoWidget);
